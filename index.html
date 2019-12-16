@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sharirandom</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="main.css">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+</head>
+<body>
+    <h1 class="title">Você pode chamar ele de, <span class="name"></span></h1>
+    <h2 class="contribute">Contribua com um novo nome <a href="https://github.com/ullissescastro/sharirandom">aqui</a></h2>
+
+    <script>
+        (async () => {
+          const applyNameToElement = name => {
+            const element = document.querySelector('.name')
+            element.textContent = name
+          }
+          
+          const getRandomNameOfArray = array => {
+            return array[Math.floor(Math.random() * array.length)]
+          }
+
+          fetch('names.json')
+            .then(respose => respose.json())
+            .then(result => applyNameToElement(getRandomNameOfArray(result.names)))
+        })()
+    </script>
+</body>
+</html>
